@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logical Puzzles</title>
+    <link rel="stylesheet" href="mystyles.css">
+</head>
+
+<body>
+<h1> Arrangement of cows in stalls </h1><br>
+<p>
+
+There are 11 empty stalls in a row. <br>
+You must arrange 10 cows and leave 1 stall empty. <br><br>
+
+There are three breeds of cows: <br>
+Breed A: 3 cows, each has a 60% chance of being aggressive. <br>
+Breed B: 5 cows, each has a 30% chance of being aggressive. <br>
+Breed C: 2 cows, each has a 10% chance of being aggressive. <br><br>
+
+Assume each cow's aggression is independent. <br><br>
+
+Your goal is to arrange the cows so that the probability of two aggressive cows being in adjacent occupied stalls is as low as possible. <br><br>
+
+Question: <br>
+Give one arrangement of the cows and the empty stall that minimizes this probability.
+</p>
+
+<h3>Enter your arrangement:</h3>
+
+<p>Use A, B, C, and _ for the empty stall. Separate them with spaces.</p>
+
+<input type="text" id="answer" placeholder="Example: A _ A C B B B B B C A">
+
+<button onclick="checkAnswer()">Check Answer</button>
+
+<p id="result"></p>
+<p id="explanation"></p>
+
+<button id="nextBtn" style="display:none;"
+onclick="window.location.href='15may8.html'">
+Move On
+</button>
+
+<button id="homeBtn" style="display:none;"
+onclick="window.location.href='Strategic Puzzles.html'">
+Return to Home
+</button>
+
+<script>
+
+function checkAnswer() {
+
+    let userAnswer =
+    document.getElementById("answer").value;
+
+    userAnswer = userAnswer.toUpperCase().trim();
+
+    userAnswer = userAnswer.replace(/\s+/g, " ");
+
+    let correctAnswer1 = "A _ A C B B B B B C A";
+    let correctAnswer2 = "A C B B B B B C A _ A";
+
+    if (userAnswer === "") {
+
+        document.getElementById("result").innerHTML =
+        "Please enter an arrangement.";
+
+        return;
+    }
+
+    if (userAnswer === correctAnswer1 || userAnswer === correctAnswer2) {
+
+        document.getElementById("result").innerHTML =
+        "Correct.";
+
+        document.getElementById("explanation").innerHTML =
+        "This arrangement separates the high-risk A cows as much as possible and places the lower-risk C cows near the block of B cows.";
+
+    }
+
+    else {
+
+        document.getElementById("result").innerHTML =
+        "Incorrect.";
+
+        document.getElementById("explanation").innerHTML =
+        "One optimal arrangement is A _ A C B B B B B C A. The reverse arrangement, A C B B B B B C A _ A, also works.";
+    }
+
+    document.getElementById("answer").disabled = true;
+
+    document.querySelector("button").disabled = true;
+
+    document.getElementById("nextBtn").style.display = "inline";
+    document.getElementById("homeBtn").style.display = "inline";
+}
+
+</script>
+
+</body>
+</html>

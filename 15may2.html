@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<head> <title> Logical Puzzles </title>
+<link rel = "stylesheet" href = "mystyles.css"> </head>
+<h1> Two people under interrogation </h1><br>
+<body> <p> Suppose you and your friend are under interrogation by the police, with your friend in another room<br>
+You can either confess or be silent <br>
+You think Your friend will confess with a probability of 10 percent <br>
+
+If your friend confesses and you confess as well, you will go to jail for 3 years, <br>
+he will go to jail for 4.5 years<br>
+If you confess and your friend stays silent, you go to jail for one year, <br>
+he goes to jail for 10 years <br>
+If you stay silent and your friend confesses you go to jail for 10 years, <br>
+He goes to jail for 4.5 years<br>
+If both stay silent, you spend 2 months in jail<br>
+He spends 7 years in jail<br>
+What is the strategy you do to spend as few time in jail as possible<br>
+
+Suppose your friend thinks you will confess with a probability of ⅓, what will he do, what is the likely outcome of the interrogation assuming both of you do not know what probability the other is using?<br>
+</p>
+<h3>Choose your strategy:</h3>
+
+<input type="radio" name="strategy" value="confess"> Confess <br>
+<input type="radio" name="strategy" value="silent"> Stay silent <br>
+
+<h3>Choose the likely outcome:</h3>
+
+<input type="radio" name="outcome" value="both_confess"> Both confess <br>
+<input type="radio" name="outcome" value="you_confess"> You confess, friend stays silent <br>
+<input type="radio" name="outcome" value="friend_confesses"> Friend confesses, you stay silent <br>
+<input type="radio" name="outcome" value="both_silent"> Both stay silent <br>
+
+<br>
+
+<button id="checkBtn" onclick="checkAnswer()">Check Answer</button>
+
+<p id="result"></p>
+
+
+<button id="nextBtn" style="display:none;"
+onclick="window.location.href='15may3.html'">
+Move On
+</button>
+<button id = "comeback" style = "display:none;" onclick="window.location.href= 'Strategic Puzzles.html'"> Return to home </button>
+
+<script>
+function checkAnswer() {
+    let strategy = document.querySelector('input[name="strategy"]:checked');
+    let outcome = document.querySelector('input[name="outcome"]:checked');
+    let result = document.getElementById("result");
+
+    if (strategy === null || outcome === null) {
+        result.innerHTML = "Please choose one strategy and one outcome.";
+        return;
+    }
+
+    if (strategy.value === "confess" && outcome.value === "both_confess") {
+        result.innerHTML = "Correct.";
+    } else {
+        result.innerHTML = "Incorrect.";
+    }
+
+    let allOptions = document.querySelectorAll('input[type="radio"]');
+    for (let option of allOptions) {
+        option.disabled = true;
+    }
+
+    document.getElementById("checkBtn").disabled = true;
+    document.getElementById("nextBtn").style.display = "inline";
+    document.getElementById("comeback").style.display = "inline";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logical Puzzles</title>
+    <link rel="stylesheet" href="mystyles.css">
+</head>
+
+<body>
+<h1> Muddy Head </h1><br>
+<p>
+
+
+You and three friends — M, N, and O — are standing together.
+Some of you may have mud on your heads. <br><br>
+
+Each person can see everyone else's head, but cannot see their own. <br><br>
+
+You can see that M and O have muddy heads. <br><br>
+
+Person A asks everyone publicly: <br>
+“Does at least one person here have a muddy head?” <br><br>
+
+You answer: “Yes.” <br><br>
+
+Then Person A repeatedly asks everyone publicly: <br>
+“Do you know whether your own head is muddy?” <br><br>
+
+Everyone must answer honestly with one of three options: <br>
+“Yes, I have mud.” <br>
+“No, I do not have mud.” <br>
+“I don’t know.” <br><br>
+
+In the first round, nobody says they know. <br>
+In the second round, nobody says they know. <br>
+In the third round, Person A asks again. <br><br>
+
+What should you say?
+</p>
+
+<h3>Choose your answer:</h3>
+
+<input type="radio" id="a" name="answer" value="a">
+<label for="a">A) I don’t know</label>
+<br>
+
+<input type="radio" id="b" name="answer" value="b">
+<label for="b">B) No, I do not have mud</label>
+<br>
+
+<input type="radio" id="c" name="answer" value="c">
+<label for="c">C) Yes, I have mud</label>
+<br><br>
+
+<button onclick="checkAnswer()">Check Answer</button>
+
+<p id="result"></p>
+<p id="explanation"></p>
+
+<button id="nextBtn" style="display:none;"
+onclick="window.location.href='15may10.html'">
+Move On
+</button>
+
+<button id="homeBtn" style="display:none;"
+onclick="window.location.href='Strategic Puzzles.html'">
+Return to Home
+</button>
+
+<script>
+
+function checkAnswer() {
+
+    let answer =
+    document.querySelector('input[name="answer"]:checked');
+
+    if (answer === null) {
+
+        document.getElementById("result").innerHTML =
+        "Please choose an option.";
+
+        return;
+    }
+
+    if (answer.value === "c") {
+
+        document.getElementById("result").innerHTML =
+        "Correct.";
+
+        document.getElementById("explanation").innerHTML =
+        "Since nobody knew in the first two rounds, there must be at least three muddy people. You can already see M and O are muddy, so the third muddy person must be you.";
+
+    }
+
+    else {
+
+        document.getElementById("result").innerHTML =
+        "Incorrect.";
+
+        document.getElementById("explanation").innerHTML =
+        "The correct answer is C. If there were only one muddy person, they would know in round 1. If there were two, they would know in round 2. Since nobody knew in the first two rounds, there must be at least three muddy people. You see M and O are muddy, so you must also be muddy.";
+    }
+
+    let options =
+    document.querySelectorAll('input[name="answer"]');
+
+    for (let option of options) {
+        option.disabled = true;
+    }
+
+    document.getElementById("nextBtn").style.display = "inline";
+    document.getElementById("homeBtn").style.display = "inline";
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head> <title> Logical Puzzles </title>
+<link rel = "stylesheet" href = "mystyles.css"> </head>
+<body><h1> Save Aditi or Help yourself </h1> <p>  You and Aditi are hanging from a tree, you can either pull yourself or help Aditi <br>
+If you pull yourself you have 50 percent  chance of survival<br>
+If you help Aditi, She can either choose to help you with a probability of 2/3 <br>
+If she helps you both of you have 75 percent chance of survival<br>
+If she chooses not to help you you have a 30 percent chance of survival<br>
+You have to maximise your probability of survival<br>
+Do you pull yourself or help Aditi?
+<br>
+</p>
+<h3>Choose your strategy:</h3>
+
+<input type="radio" id="pull" name="strategy" value="pull">
+<label for="pull">Pull yourself up</label>
+<br>
+
+<input type="radio" id="help" name="strategy" value="help">
+<label for="help">Help Aditi</label>
+<br><br>
+
+<button onclick="checkAnswer()">Check Answer</button>
+
+<p id="result"></p>
+<p id="explanation"></p>
+
+<button id="nextBtn" style="display:none;"
+onclick="window.location.href='15may5.html'">
+Move On
+</button>
+<button id = "comeback" style = "display:none;" onclick="window.location.href= 'Strategic Puzzles.html'"> Return to home </button>
+
+<script>
+
+function checkAnswer() {
+
+    let strategy =
+    document.querySelector('input[name="strategy"]:checked');
+
+    if (strategy === null) {
+
+        document.getElementById("result").innerHTML =
+        "Please choose an option.";
+
+        return;
+    }
+
+    if (strategy.value === "help") {
+
+        document.getElementById("result").innerHTML =
+        "Correct.";
+
+        document.getElementById("explanation").innerHTML =
+        "Helping Aditi gives an expected survival chance of 60 percent: (2/3 × 75) + (1/3 × 30). Pulling yourself up gives only 50 percent.";
+
+    }
+
+    else {
+
+        document.getElementById("result").innerHTML =
+        "Incorrect.";
+
+        document.getElementById("explanation").innerHTML =
+        "Helping Aditi gives an expected survival chance of 60 percent, which is higher than the 50 percent chance from pulling yourself up.";
+
+    }
+
+    let options =
+    document.querySelectorAll('input[name="strategy"]');
+
+    for (let option of options) {
+
+        option.disabled = true;
+    }
+
+    document.getElementById("nextBtn").style.display = "inline";
+    document.getElementById("comeback").style.display = "inline";
+}
+
+</script>
+
+</body>
+</html>
+

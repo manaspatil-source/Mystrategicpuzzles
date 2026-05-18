@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Strategic Puzzles</title>
+    <link rel="stylesheet" href="mystyles.css">
+</head>
+
+<body>
+<h1> Pick A Number </h1><br>
+<p>
+ <br>
+There are 100 numbers from 0 - 100 <br>
+One number has been chosen secretly <br>
+You have to guess that number <br><br>
+
+If your guess is too high or too low we will tell you <br>
+
+You have maximum 7 guesses
+</p>
+
+<input type="number" id="guess" min="0" max="100">
+
+<button onclick="checkGuess()">Submit Guess</button>
+
+<p id="result"></p>
+<p id="guessesLeft"></p>
+
+<button id="nextBtn" style="display:none;"
+onclick="window.location.href='15may2.html'">
+Move On
+</button>
+<button id = "comeback" style = "display:none;" onclick="window.location.href= 'Strategic Puzzles.html'"> Return to home </button>
+
+<script>
+
+let secretNumber = Math.floor(Math.random() * 101);
+
+let attempts = 0;
+let maxAttempts = 7;
+
+function checkGuess() {
+
+    let guess =
+    Number(document.getElementById("guess").value);
+
+    if (guess < 0 || guess > 100 || isNaN(guess)) {
+
+        document.getElementById("result").innerHTML =
+        "Enter a number between 0 and 100.";
+
+        return;
+    }
+
+    attempts++;
+
+    let remaining = maxAttempts - attempts;
+
+    if (guess === secretNumber) {
+
+        document.getElementById("result").innerHTML =
+        "Correct! You guessed the number.";
+
+        document.getElementById("guessesLeft").innerHTML =
+        "";
+
+        endGame();
+
+        return;
+    }
+
+    if (attempts >= maxAttempts) {
+
+        document.getElementById("result").innerHTML =
+        "Out of guesses. The number was " + secretNumber;
+
+        document.getElementById("guessesLeft").innerHTML =
+        "";
+
+        endGame();
+
+        return;
+    }
+
+    if (guess > secretNumber) {
+
+        document.getElementById("result").innerHTML =
+        "Too high.";
+
+    }
+
+    else {
+
+        document.getElementById("result").innerHTML =
+        "Too low.";
+    }
+
+    document.getElementById("guessesLeft").innerHTML =
+    "Guesses remaining: " + remaining;
+}
+
+function endGame() {
+
+    document.getElementById("guess").disabled = true;
+
+    document.querySelector("button").disabled = true;
+
+    document.getElementById("nextBtn").style.display =
+    "inline";
+    document.getElementById("comeback").style.display = "inline";
+}
+
+</script>
+
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logical Puzzles</title>
+    <link rel="stylesheet" href="mystyles.css">
+</head>
+
+<body>
+<h1> Heads and Tails </h1>
+<p>
+You and your friend each choose either Heads or Tails. <br><br>
+
+Your payoff is: <br><br>
+
+Heads / Heads = ₹20 <br>
+Heads / Tails = -₹10 <br>
+Tails / Heads = -₹12 <br>
+Tails / Tails = ₹30 <br><br>
+
+Suppose you believe your friend will choose Heads with probability p%. <br><br>
+
+Question: <br>
+At what value of p are you indifferent between choosing Heads and Tails?
+</p>
+
+<h3>Enter the value of p:</h3>
+
+<input type="number" id="answer" step="0.1" placeholder="Enter percentage">
+
+<button onclick="checkAnswer()">Check Answer</button>
+
+<p id="result"></p>
+<p id="explanation"></p>
+
+<button id="nextBtn" style="display:none;"
+onclick="window.location.href='15may9.html'">
+Move On
+</button>
+
+<button id="homeBtn" style="display:none;"
+onclick="window.location.href='Strategic Puzzles.html'">
+Return to Home
+</button>
+
+<script>
+
+function checkAnswer() {
+
+    let answer =
+    Number(document.getElementById("answer").value);
+
+    if (isNaN(answer)) {
+
+        document.getElementById("result").innerHTML =
+        "Please enter a number.";
+
+        return;
+    }
+
+    if (Math.abs(answer - 66.67) < 0.5) {
+
+        document.getElementById("result").innerHTML =
+        "Correct.";
+
+        document.getElementById("explanation").innerHTML =
+        "Expected payoff from Heads = 20p + (-10)(1-p). Expected payoff from Tails = (-12)p + 30(1-p). Setting them equal gives p = 2/3 = 66.67%.";
+
+    }
+
+    else {
+
+        document.getElementById("result").innerHTML =
+        "Incorrect.";
+
+        document.getElementById("explanation").innerHTML =
+        "Expected payoff from Heads is 20p - 10(1-p). Expected payoff from Tails is -12p + 30(1-p). Solving gives p = 66.67%. Above this value choose Heads; below it choose Tails.";
+    }
+
+    document.getElementById("answer").disabled = true;
+
+    document.querySelector("button").disabled = true;
+
+    document.getElementById("nextBtn").style.display = "inline";
+    document.getElementById("homeBtn").style.display = "inline";
+}
+
+</script>
+
+</body>
+</html>

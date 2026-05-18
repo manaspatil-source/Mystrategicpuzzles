@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head> <title> Logical Puzzles </title>
+<link rel = "stylesheet" href = "mystyles.css"> </head>
+
+<body> <h1> Give or Share </h1><p> You and your siblings have invested in this scheme that triples your money every TURN<br> you can choose to take all or pass it on and it will triple, and your sibling can then choose the same <br><br> At end of 5 rounds if you choose to pass again both of you split the money <br><br> Assume your sibling will think in a similar way to you <br> <br> Example if you have 10 dollars and pass it down, it becomes 30 dollars,<br><br> if he chooses to pass it on it becomes 90, and you get to choose again at the end if you choose to pass it gets split equally <br><br><br> What do you do?
+</p>
+
+
+<h3>Choose your strategy:</h3>
+
+<input type="radio" id="take" name="strategy" value="take">
+<label for="take">Take all the money now</label>
+<br>
+
+<input type="radio" id="pass" name="strategy" value="pass">
+<label for="pass">Pass it on so it triples</label>
+<br><br>
+
+<button onclick="checkAnswer()">Check Answer</button>
+
+<p id="result"></p>
+<p id="explanation"></p>
+
+<script>
+function checkAnswer() {
+
+    let strategy = document.querySelector('input[name="strategy"]:checked');
+
+    if (strategy === null) {
+        document.getElementById("result").innerHTML =
+        "Please choose an option.";
+        return;
+    }
+
+   if (strategy.value === "pass") {
+
+    document.getElementById("result").innerHTML =
+    "Correct.";
+
+    document.getElementById("explanation").innerHTML =
+    "Correct answer: pass it on.";
+
+}
+
+else {
+
+    document.getElementById("result").innerHTML =
+    "Incorrect.";
+
+    document.getElementById("explanation").innerHTML =
+    "The correct answer is to pass it on.";
+}
+
+    let options = document.querySelectorAll('input[name="strategy"]');
+
+    for (let option of options) {
+        option.disabled = true;
+    }
+    document.getElementById("nextBtn").style.display = "inline";
+    document.getElementById("comeback").style.display = "inline";
+}
+</script>
+<button id="nextBtn" style="display:none;" onclick="window.location.href='15may4.html'">
+    Move On
+</button>
+<button id = "comeback" style = "display:none;" onclick="window.location.href= 'Strategic Puzzles.html'"> Return to home </button>
+
+
+</body>
+</html>

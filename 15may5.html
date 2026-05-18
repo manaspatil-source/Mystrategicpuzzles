@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+<head> <title> Logical Puzzles </title>
+<link rel = "stylesheet" href = "mystyles.css"> </head>
+<body> <h1> Position of the survivor </h1><br>
+ <p> There are 53 people standing in a line, numbered from 1 to 53. You may choose any starting position. <br><br>
+A dictator repeatedly conducts elimination rounds using this fixed repeating pattern: <br><br>
+4, 2, 3, 3, 2, 3, 4, 2, 3, 4, 2, 3, ... <br><br>
+In each round, the next number in the pattern is used. <br><br>
+If the number is N: <br><br>
+Starting from the front of the current line, only every N-th person survives. Everyone else is eliminated. <br><br>
+After each round, the survivors form a new line, keeping their original relative order. <br><br>
+If N is larger than the number of people remaining, that round is skipped and the next number in the pattern is used. <br><br>
+The process continues until only one person remains. <br><br> <br><br>
+Question: <br><br>
+ Which starting position should you choose to guarantee survival? <br><br>
+</p>
+
+<input type="number" id="answer" min="1" max="53">
+
+<button onclick="checkAnswer()">Check Answer</button>
+
+<p id="result"></p>
+<p id="explanation"></p>
+
+<button id="nextBtn" style="display:none;"
+onclick="window.location.href='15may6.html'">
+Move On
+</button>
+
+<button id="homeBtn" style="display:none;"
+onclick="window.location.href='Strategic Puzzles.html'">
+Return to Home
+</button>
+
+<script>
+
+function checkAnswer() {
+
+    let answer = Number(document.getElementById("answer").value);
+
+    if (answer < 1 || answer > 53 || isNaN(answer)) {
+
+        document.getElementById("result").innerHTML =
+        "Enter a number between 1 and 53.";
+
+        return;
+    }
+
+    if (answer === 48) {
+
+        document.getElementById("result").innerHTML =
+        "Correct.";
+
+        document.getElementById("explanation").innerHTML =
+        "Position 48 survives all elimination rounds.";
+
+    }
+
+    else {
+
+        document.getElementById("result").innerHTML =
+        "Incorrect.";
+
+        document.getElementById("explanation").innerHTML =
+        "The correct answer is 48. After the 4-round, survivors are 4, 8, 12, ..., 52. After the 2-round, survivors include 8, 16, 24, 32, 40, 48. After the next rounds, 48 is the final survivor.";
+    }
+
+    document.getElementById("answer").disabled = true;
+
+    document.querySelector("button").disabled = true;
+
+    document.getElementById("nextBtn").style.display = "inline";
+    document.getElementById("homeBtn").style.display = "inline";
+}
+
+</script>
+
+</body>
+</html>
